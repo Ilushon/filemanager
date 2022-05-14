@@ -9,7 +9,7 @@ npm run dev
 ## На сервере (Терминал 2)
 cd server
 
-# Запуск nodemon
+# Запуск сервера на localhost:5000
 npm run dev
 
 После запуска - 
