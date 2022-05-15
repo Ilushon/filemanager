@@ -15,18 +15,16 @@ const router = Router();
 
 let my_path;
 let myZip2;
-// const my_file1;
 let folder_path;
 
-// Responds with the relative path of a selected directory or file
+// Ответ: путь к выбранному каталогу
 router.post("/sendPath", (req, res) => {
   my_path = req.body.sent_path;
-  // my_file1 = req.body.sent_file;
   const isDir = path.dirname(my_path);
   res.send({ full_path: my_path, the_dir: isDir });
 });
 
-// Uploads files to the file directory
+// Загружает файлы в каталог
 router.post("/upload", (req, res) => {
   if (!req.files) {
     return res.status(500).send({ msg: "file is not found" });
@@ -42,7 +40,7 @@ router.post("/upload", (req, res) => {
   });
 });
 
-// List all sub-directories in the 'files' directory.
+// Перечисление всех подкаталогов в каталоге "files".
 router.post("/getAllMainFolders", (req, res) => {
   const dirPath = "./files/";
   let result = [];
@@ -55,7 +53,7 @@ router.post("/getAllMainFolders", (req, res) => {
   });
 });
 
-// Чтение всех файлов из выбранной директории и добавление их в 
+// Чтение всех файлов из выбранной директории
 router.post("/getAllFilesFromSelectedFolder", (req, res) => {
   const dirPath = req.body.path_name;
   folder_path = dirPath;
@@ -105,14 +103,14 @@ router.post("/newFolder", (req, res) => {
   return res.sendStatus(200);
 });
 
-// Pass the user's selected paths for use with the zip function
+// Передача пользователю выбранных директорий для архивации
 router.post("/sendZips", (req, res) => {
   const myZip = req.body.sentZip;
   myZip2 = req.body.sentZip;
   res.send(myZip);
 });
 
-// Download a file
+// Загрузка файла
 router.get("/download", (req, res) => {
   const selectedPath = my_path;
   Logger.Event(`Download: ${my_path}`);
@@ -120,12 +118,12 @@ router.get("/download", (req, res) => {
   res.sendFile(file);
 });
 
-// View a file
+// Просмотр файла (Аудио, видео, фото, документ)
 router.get("/view", (req, res) => {
   res.sendFile(my_path, { root: cwd() });
 });
 
-// Delete selected files and directories
+// Функция удаления выбранных файлов
 router.post("/delete", (req, res) => {
   const thePath = req.body.sent_path;
 
@@ -133,13 +131,13 @@ router.post("/delete", (req, res) => {
     rimraf(filepath, (err) => {
       if (err) return Logger.Error(err);
 
-      Logger.Event("Delete successful");
+      Logger.Event("Успешное удаление");
     });
   });
   res.sendStatus(200);
 });
 
-// Move selected files and directories
+// Функция перемещения файлов
 router.post("/movefile", (req, res) => {
   const org = req.body.org_path;
   const dest = req.body.dest_path;
@@ -152,15 +150,15 @@ router.post("/movefile", (req, res) => {
       { mkdrip: true, clobber: false },
       (err) => {
         if (err) throw err;
-        Logger.Event("Move complete.");
+        Logger.Event("Успешное перемещение.");
       }
     );
   }
-  Logger.Event(`${org} ...was moved to... ${dest}`);
+  Logger.Event(`${org} ...был перемещен в... ${dest}`);
   res.sendStatus(200);
 });
 
-// Zip selected files and directories
+// Архивация выбранных файлов, или папок
 router.get("/zip", (req, res) => {
   const files = myZip2;
   const archive = archiver("zip");

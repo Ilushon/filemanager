@@ -45,7 +45,7 @@ class DateTime {
 		return(_Date);
 	}
 
-	// Format the last time a file was edited/created
+	// Обновление даты изменения файлов
 	static lastUpdatedDate(file) {
 		const { ctime } = fs.statSync(file);
 		return DateTime.Format(ctime);

@@ -13,7 +13,7 @@ const port = Config.PORT;
 let terminator;
 
 const Setup = async () => {
-	Logger.System("Starting server...");
+	Logger.System("Запуск сервера...");
 
 	const app = express();
 
@@ -25,7 +25,7 @@ const Setup = async () => {
 	app.use("/", routes);
 
 	const server = app.listen(port, () => {
-		Logger.System(`Server running on port: ${port}`);
+		Logger.System(`Сервер запущен на порт: ${port}`);
 	});
 
 	terminator = createHttpTerminator({
@@ -35,7 +35,7 @@ const Setup = async () => {
 
 const Close = async () => {
 	await terminator.terminate();
-	Logger.Event("Closed server.");
+	Logger.Event("Завершение работы.");
 };
 
 

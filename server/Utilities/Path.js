@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 class Path {
-	// Check if a given path is a directory
+	// Проверка на директорию
 	static isDir(path) {
 		try {
 			const stat = fs.lstatSync(path);

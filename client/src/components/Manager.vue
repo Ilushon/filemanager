@@ -785,7 +785,7 @@ export default {
       this.$refs["moveModal"].hide();
       $("#fileTable input:checkbox").prop("checked", false);
       this.checkedObjects = [];
-      this.moveDestination = "No Folder Selected";
+      this.moveDestination = "Не выбран файл";
     },
 
     hideDeleteModal() {

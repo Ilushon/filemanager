@@ -1,5 +1,5 @@
 require("dotenv").config();
-
+//отсюда начинается запуск серверной части
 const ExitHandler = require("./Utilities/ExitHandler");
 const Server = require("./Utilities/Server");
 

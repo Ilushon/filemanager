@@ -46,17 +46,17 @@ class ExitHandler {
 	}
 
 	static async Terminate(code, message) {
-		// Exit function
+		// Выход
 		const exit = () => {
 			process.exit(code);
 		};
 
 		logError(message);
 
-		// exit if cleanup takes too long
+		// Выход при длительном ожидании
 		setTimeout(exit, 500).unref();
 
-		// Attempt a graceful shutdown
+		// Плавное завершение работы
 		if (this.cleanupHandler != undefined) {
 			await this.cleanupHandler();
 		}

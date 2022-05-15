@@ -12,15 +12,15 @@ class Logger {
 	static System(log) {
 		logSystem("\x1b[36m%s\x1b[0m", log, `- ${DateTime.Now()}`);
 	}
-    
+    //событие
 	static Event(log) {
 		logEvent(log, `- ${DateTime.Now()}`);
 	}
-    
+    //предупреждение
 	static Warn(log) {
 		logWarn("\x1b[33m%s\x1b[0m", log, `- ${DateTime.Now()}`);
 	}
-	
+	//Ошибка
 	static Error(log) {
 		logError("\x1b[31m%s\x1b[0m", log, `- ${DateTime.Now()}`);
 	}
