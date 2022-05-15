@@ -186,7 +186,7 @@ router.get("/zip", (req, res) => {
   archive.finalize();
 });
 
-// Extract selected .zip file *Please note only .zip files are supported for now
+// Извлечение выбранного zip-файл - поддерживаются только zip-файлы .
 router.post("/extract", async (req, res) => {
   const src = req.body.path_name;
   const dest = path.dirname(src);
@@ -194,7 +194,7 @@ router.post("/extract", async (req, res) => {
   try {
     const dir = path.join(cwd(), dest);
     await extract(src, { dir }).then(res.sendStatus(200));
-    Logger.Event("Extraction complete");
+    Logger.Event("Завершение экстракта");
   } catch (err) {
     Logger.Error(err);
   }

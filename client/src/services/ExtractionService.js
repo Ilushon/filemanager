@@ -1,7 +1,6 @@
 /* eslint-disable */
 // @ts-ignore
 import axios from "axios";
-
 class ExtractionService {
   extract = async function(path) {
     axios

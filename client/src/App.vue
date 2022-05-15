@@ -7,6 +7,7 @@
 <script>
 import Manager from "./components/Manager.vue";
 
+// default = App с компонентом Manager.Vue
 export default {
   name: "App",
   components: {

@@ -1,6 +1,7 @@
 <template>
   <div class="d-flex" id="wrapper">
     <div id="page-content-wrapper">
+      <!-- Шапка сайта содержит путь просматриваемой директории, а при выделении объектов ниже они перечисляются -->
       <nav
         id="topBar"
         class="navbar navbar-expand-sm navbar-dark border-bottom"
@@ -8,6 +9,7 @@
         <p id="pathReadout"><b>Директория "Path": </b> {{ picked }}</p>
         <p id="selectedReadout"><b>Выбранные объекты: </b>{{ checkedObjects }}</p>
       </nav>
+      <!-- Ниже в контейнере слева - поле input для поиска, справа функциональные кнопки, при растягивании страницы они плавают -->
       <div id="divFileManager" class="container-fluid">
         <div class="row">
           <div class="col-md-12">
@@ -22,6 +24,7 @@
                   class="bi bi-search"
                   viewBox="0 0 16 16"
                 >
+                <!-- рисунок библиотеки Bootstrap -->
                   <path
                     d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"
                   />
@@ -54,9 +57,11 @@
                 class="bi bi-trash"
                 viewBox="0 0 16 16"
               >
+               <!-- рисунок библиотеки Bootstrap -->
                 <path
                   d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
                 />
+                 <!-- рисунок библиотеки Bootstrap -->
                 <path
                   fill-rule="evenodd"
                   d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
@@ -64,7 +69,7 @@
               </svg>
               Удалить
             </v-btn>
-
+ <!-- переместить -->
             <v-btn
               id="btnMove"
               class="float-right"
@@ -92,7 +97,7 @@
               </svg>
               Переместить
             </v-btn>
-
+<!-- открыть -->
             <v-btn
               class="float-right"
               style="color: white; margin-left: 5px;"
@@ -119,7 +124,7 @@
               </svg>
               Открыть в обозревателе</v-btn
             >
-
+<!-- новая папка -->
             <v-btn
               class="float-right"
               style="color: white;"
@@ -146,7 +151,7 @@
               </svg>
               Создать новую папку</v-btn
             >
-
+<!-- Экспорт на сервер -->
             <v-btn
               class="float-right"
               id="downloadMulti"
@@ -172,7 +177,7 @@
                 /></svg>
 				Экспорт на сервер</v-btn
             >
-
+<!-- скачать выбранные -->
             <v-btn
               id="btnDownload"
               small
@@ -200,13 +205,13 @@
             >
           </div>
         </div>
-
+<!-- ПОЛЕ ДЛЯ ПЕРЕТАСКИВАНИЯ ФАЙЛОВ -->
         <vue-dropzone
           ref="myVueDropzone"
           id="myDropzone"
           :options="dropzoneOptions"
         ></vue-dropzone>
-
+<!-- Главная таблица - директории -->
         <div class="row">
           <div class="col-md-3">
             <table
@@ -256,7 +261,7 @@
                 />
               </svg>
             </button>
-
+<!-- Отчистка выделенных элементов -->
             <button id="btnClearSelect" @click="clearSelects()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -279,7 +284,7 @@
               style="overflow-y: scroll; border: 2px solid #e5e5e5; margin-top: 10px;"
             >
               <tbody>
-                <!-- FOLDERS - RIGHT HAND TABLE--------------->
+                <!-- Папки правой колонки--------------->
                 <tr
                   id="entries"
                   v-for="alias2 in files"
@@ -325,7 +330,7 @@
                         d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"
                       />
                     </svg>
-
+<!-- Вызов данных о файлах -->
                     <span id="fileName">{{ alias2.names }}</span>
                     <span
                       style="margin-right: 10px; font-family:'consolas'; font-size: 14px;"
@@ -341,7 +346,7 @@
                   </div>
                 </tr>
 
-                <!-- FILES - RIGHT HAND TABLE ------------------------------>
+                <!-- Правая колонка ------------------------------>
 
                 <tr
                   id="entries"
@@ -374,7 +379,7 @@
                           d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"
                         />
                       </svg>
-
+<!-- Вызов иконки в зависимости от типа файла -->
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         v-if="
@@ -405,7 +410,7 @@
                           d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z"
                         />
                       </svg>
-
+<!-- Вызов иконки в зависимости от типа файла -->
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         style="color: #75b5aa; margin-right: 10px; margin-left: 10px; margin-top: -5px;"
@@ -443,14 +448,14 @@
                           d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.485 6.879l1.036 4.144.997-3.655a.5.5 0 0 1 .964 0l.997 3.655 1.036-4.144a.5.5 0 0 1 .97.242l-1.5 6a.5.5 0 0 1-.967.01L8 9.402l-1.018 3.73a.5.5 0 0 1-.967-.01l-1.5-6a.5.5 0 1 1 .97-.242z"
                         />
                       </svg>
-
+<!-- Вызов иконки в зависимости от типа файла -->
                       <i
                         v-if="alias2.fileExt == '.pdf'"
                         style="color: #be2e31; margin-right: 10px; margin-left: 10px; margin-top: -5px;"
                         class="fa fa-file-pdf-o"
                         aria-hidden="true"
                       ></i>
-
+<!-- Вызов иконки в зависимости от типа файла -->
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         style="color: #d28445; margin-right: 10px; margin-left: 10px; margin-top: -5px;"
@@ -475,7 +480,7 @@
                           d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"
                         />
                       </svg>
-
+<!-- Вызов иконки в зависимости от типа файла -->
                       <svg
                         v-if="
                           alias2.fileExt == '.zip' || alias2.fileExt == '.7z'
@@ -522,7 +527,7 @@
           </div>
         </div>
 
-        <!-- New Folder Modal -->
+        <!-- Всплывающее окно для создания новой папки -->
         <b-modal
           ref="folderModal"
           id="folderModal"
@@ -538,19 +543,19 @@
           ></v-text-field>
 
           <div class="float-right mt-5">
-            <v-btn small @click="hideFolderModal()">Cancel</v-btn>
+            <v-btn small @click="hideFolderModal()">Закрыть</v-btn>
             <v-btn
               small
               style="background-color: #8fe8c2; margin-left: 10px;"
               @click="newFolder()"
               :disabled="folderName.length == 0"
             >
-              Add Folder</v-btn
+              Добавить</v-btn
             >
           </div>
         </b-modal>
 
-        <!-- Move items modal -->
+         <!-- Всплывающее окно для перемещения папки -->
         <b-modal
           ref="moveModal"
           id="moveModal"
@@ -664,7 +669,7 @@
             >
           </div>
         </b-modal>
-
+ <!-- Всплывающее окно с предупреждением об удалении -->
         <b-modal
           ref="deleteModal"
           id="deleteModal"
@@ -722,12 +727,14 @@
 </template>
 
 <script>
+// При разработке сайта был использован инструмент анализа кода eslint
 /* eslint-disable */
 import vue2Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import axios from "axios";
 import $ from "jquery";
 
+//вызов функции загрузки и функции экспорта на сервер
 import DownloadService from "../services/DownloadService.js";
 import ExtractionService from "../services/ExtractionService.js";
 
@@ -762,10 +769,10 @@ export default {
       currentDir: "",
     };
   },
-
+// вызов
   mounted() {
     this.getFolders();
-    this.updateTable("./files/A1_Main");
+    this.updateTable("./files/Рабочая папка");
   },
 
   methods: {
@@ -816,7 +823,7 @@ export default {
         });
     },
 
-    // Lists the contents of a selected main directory
+    // Отображение содержимого выбранного каталога (Функции странные)
     selectSwitch: function(e) {
       $("#exampleTr tr").each(function(a, b) {
         $(b).click(function() {
@@ -841,7 +848,7 @@ export default {
         });
     },
 
-    // Lists subdirectories when moving objects
+    // Перечисление подкаталогов при перемещении объектов
     selectSwitchMove: function(e) {
       this.moveDestination = e;
       axios
@@ -856,8 +863,8 @@ export default {
         });
     },
 
-    // Checks or unchecks an object and adds the path to the "checkedObjects" array.
-    // Passes checked objects to the server via /sendZips
+    // Проверяет и снимает флажок с объекта и добавляет путь к массиву "checkedObjects".
+   // Передает проверенные объекты на сервер через /sendZips
     toggleFile(file) {
       var $this = this;
       var selected = $this.checkedObjects;
@@ -880,7 +887,7 @@ export default {
         });
     },
 
-    // Gets a list of all 'top-level' folders
+    // Получение список всех папок "files"
     getFolders() {
       axios
         .post(`http://localhost:5000/getAllMainFolders`)
@@ -892,8 +899,8 @@ export default {
         });
     },
 
-    // Passes selected objects to the server. If the file is a directory (isDir == true), gets a list
-    // of all objects within that directory
+    // Функция передает выбранные объекты на сервер. Если файл является каталогом (isDir == true), то получает список
+    // всех объектов в этом каталоге
     selectSwitchFiles: function(path, fileName, isDir) {
       this.picked_File = fileName;
       axios
@@ -920,7 +927,7 @@ export default {
         });
     },
 
-    // View a selected file in a new tab, if applicable
+    // Просмотр выбранного файла на новой вкладке, если применимо
     viewFile() {
       axios
         .get("http://localhost:5000/view", {})
@@ -932,19 +939,19 @@ export default {
         });
     },
 
-    // Uncheck all objects and clear the checkedObjects array
+    // Очистка выбранных элементов
     clearSelects() {
       this.checkedObjects = [];
       $("#fileTable input:checkbox").prop("checked", false);
     },
 
-    // Resets current path as the 'root' directory, used
-    // when creating new 'top-level' directories
+    // Сбрасывает текущий путь в качестве "корневого" каталога, используемого
+    // при создании новых каталогов "верхнего уровня"
     setFolderAsMain() {
       this.picked = "./files/";
     },
 
-    // Moves the user back a level
+    // Возвращение в предыдущкю директорию
     prevDir() {
       if (this.picked == "./files") {
         console.log("end of FS");
@@ -966,7 +973,7 @@ export default {
       }
     },
 
-    // Deletes any checked objects in the checkedObjects array
+    // Удаляет все отмеченные объекты в массиве checkedObjects
     deleteFile() {
       this.$refs["deleteModal"].hide();
       axios
@@ -1012,7 +1019,7 @@ export default {
       });
     },
 
-    // Move all checked objects to a specified directory (the movePicked array)
+    // Перемещает все отмеченные объекты в указанный каталог (массив movePicked)
     moveFile() {
       axios
         .post("http://localhost:5000/movefile", {
@@ -1031,7 +1038,7 @@ export default {
         });
     },
 
-    // Filters the right-hand table for given values
+    //Фильтрует правую колонку по заданным значениям (Поиск по названию)
     searchTable() {
       var input, filter, table, tr, td, i, txtValue;
       input = this.searchTyped;
@@ -1055,6 +1062,7 @@ export default {
 };
 </script>
 
+<!-- Стили объектов -->
 <style>
 #wrapper {
   overflow-x: hidden;
@@ -1236,9 +1244,7 @@ td {
 }
 
 thead tr {
-  /* fallback */
   width: 97%;
-  /* minus scroll bar width */
   width: -webkit-calc(100% - 16px);
   width: -moz-calc(100% - 16px);
   width: calc(100% - 16px);
@@ -1262,7 +1268,7 @@ tbody {
 
 tbody td,
 thead th {
-  width: 19%; /* 19% is less than (100% / 5 cols) = 20% */
+  width: 19%;
   float: left;
 }
 
@@ -1290,7 +1296,7 @@ thead th {
   font-weight: 600;
   padding-right: 7px;
 }
-
+/* В зависимости от браузера */
 #entries {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */

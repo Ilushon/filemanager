@@ -6,10 +6,11 @@ import $ from "jquery";
 
 class DownloadService {
   downloadSingleFile = async function(pickedFile) {
+    //вызов выделенных файлов
     var get = pickedFile;
     axios
       .get("http://localhost:5000/download", {
-        responseType: "blob",
+        responseType: "blob", // бинарные данные
       })
       .then((response) => {
         FileDownload(response.data, get);
@@ -22,10 +23,10 @@ class DownloadService {
   downloadMultiple = async function() {
     axios
       .get("http://localhost:5000/zip", {
-        responseType: "blob",
+        responseType: "blob", // бинарные данные
       })
       .then((response) => {
-        FileDownload(response.data, new Date().toLocaleString() + ".zip");
+        FileDownload(response.data, new Date().toLocaleString() + ".zip"); //для загрузки папки она архивируется с названием (Дата и время)
         $("#fileTable input:checkbox").prop("checked", false);
       })
       .catch((err) => {

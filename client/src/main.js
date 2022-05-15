@@ -6,11 +6,11 @@ require('../node_modules/bootstrap/dist/css/bootstrap.css')
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
-// Подключение Bootstrap к проекту
+// Подключение Bootstrap
 Vue.use(BootstrapVue)
-// Optionally install the BootstrapVue icon components plugin
+// плагины
 Vue.use(IconsPlugin)
-import vuetify from '@/plugins/vuetify' // path to vuetify export
+import vuetify from '@/plugins/vuetify' 
 
 import App from './App.vue'
 
